@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "giangndm@ows.vn"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "giangndm@ows.vn"
+    }
+  ],
+  "cordova": {
+    "id": "cordova-plugin-iosrtc-extended",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {
+    "debug": "^2.6.3",
+    "domready": "^1.0.8",
+    "random-number": "^0.0.7",
+    "yaeti": "^0.0.6"
+  },
+  "deprecated": false,
+  "description": "Cordova iOS plugin exposing the full WebRTC W3C JavaScript APIs",
+  "devDependencies": {
+    "browserify": "14.1.0",
+    "gulp": "git+https://github.com/gulpjs/gulp.git#v4.0.0",
+    "gulp-derequire": "^2.1.0",
+    "gulp-header": "^2.0.7",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jscs-stylish": "^1.4.0",
+    "gulp-jshint": "^2.0.4",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "~2.2.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "engines": [
+    {
+      "name": "cordova-ios",
+      "version": ">=3.8.0"
+    }
+  ],
+  "homepage": "https://github.com/proficonf/cordova-plugin-iosrtc-extended",
+  "keywords": [
+    "cordova",
+    "webrtc",
+    "ios"
+  ],
+  "license": "MIT",
+  "main": "js/iosrtc.js",
+  "name": "@proficonf/cordova-plugin-iosrtc-extended",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:proficonf/cordova-plugin-iosrtc-extended.git"
+  },
+  "version": "2.0.9"
+}
