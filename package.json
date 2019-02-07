@@ -49,7 +49,7 @@
   ],
   "license": "MIT",
   "main": "js/iosrtc.js",
-  "name": "@proficonf/cordova-plugin-iosrtc-extended",
+  "name": "cordova-plugin-iosrtc-extended",
   "repository": {
     "type": "git",
     "url": "git@github.com:proficonf/cordova-plugin-iosrtc-extended.git"
