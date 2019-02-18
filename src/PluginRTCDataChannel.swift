@@ -43,12 +43,7 @@ class PluginRTCDataChannel : NSObject, RTCDataChannelDelegate {
 		eventListener: @escaping (_ data: NSDictionary) -> Void,
 		eventListenerForBinaryMessage: @escaping (_ data: Data) -> Void
 	) {
-		NSLog("PluginRTCDataChannel#init(). SKIPPED. ")
-		
-		if self.rtcDataChannel == nil {
-			NSLog("PluginRTCDataChannel#init() | skipped by script")
-			return
-		}
+		NSLog("PluginRTCDataChannel#init().")
 
 		self.eventListener = eventListener
 		self.eventListenerForBinaryMessage = eventListenerForBinaryMessage
@@ -125,15 +120,14 @@ class PluginRTCDataChannel : NSObject, RTCDataChannelDelegate {
 
 
 	func run() {
-		NSLog("PluginRTCDataChannel#run(). SKIPPED.")
-		//
-		//self.rtcDataChannel!.delegate = self
+		NSLog("PluginRTCDataChannel#run().")
+		self.rtcDataChannel!.delegate = self
 
-		//if data channel is created after there is a connection,
+		if data channel is created after there is a connection,
 		// we need to dispatch its current state.
-		//if (self.rtcDataChannel?.readyState != RTCDataChannelState.connecting) {
-		//	dataChannelDidChangeState(self.rtcDataChannel!);
-		//}
+		if (self.rtcDataChannel?.readyState != RTCDataChannelState.connecting) {
+			dataChannelDidChangeState(self.rtcDataChannel!);
+		}
 	}
 
 
