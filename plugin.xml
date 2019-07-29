@@ -43,7 +43,6 @@
 		<header-file src="src/webrtc-headers/RTCVideoCapturer.h" />
 		<header-file src="src/webrtc-headers/RTCAudioSource.h" />
 		<header-file src="src/webrtc-headers/RTCICEServer.h" />
-		<header-file src="src/webrtc-headers/RTCEAGLVideoView.h" />
 		<header-file src="src/webrtc-headers/RTCVideoFrame.h" />
 		<header-file src="src/webrtc-headers/RTCAudioTrack.h" />
 		<header-file src="src/webrtc-headers/RTCLegacyStatsReport.h" />
