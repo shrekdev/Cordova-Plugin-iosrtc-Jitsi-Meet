@@ -57,6 +57,7 @@
 		<header-file src="src/webrtc-headers/RTCVideoTrack.h" />
 		<header-file src="src/webrtc-headers/RTCConfiguration.h" />
 		<header-file src="src/webrtc-headers/RTCCertificate.h" />
+		<header-file src="src/webrtc-headers/RTCCryptoOptions.h" />
 		<header-file src="src/webrtc-headers/RTCMTLVideoView.h" />
 		<header-file src="src/webrtc-headers/RTCRtpEncodingParameters.h" />
 		<header-file src="src/webrtc-headers/RTCVideoViewShading.h" />

@@ -23,6 +23,7 @@
 //#import "RTCPair.h"
 #import "RTCConfiguration.h"
 #import "RTCCertificate.h"
+#import "RTCCryptoOptions.h"
 #import "RTCPeerConnection.h"
 //#import "RTCPeerConnectionDelegate.h"
 #import "RTCPeerConnectionFactory.h"
