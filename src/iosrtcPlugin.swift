@@ -344,7 +344,7 @@ class iosrtcPlugin : CDVPlugin {
         let pcId = command.argument(at: 0) as! Int
         let streamId = command.argument(at: 1) as! String
         let pluginRTCPeerConnection = self.pluginRTCPeerConnections[pcId]
-        let rtcRtpSender = self.rtcRtpSenders["\(pcID)_\(trackId)"]
+        let rtcRtpSender = self.rtcRtpSenders["\(pcId)_\(trackId)"]
 
         if pluginRTCPeerConnection == nil {
             NSLog("iosrtcPlugin#RTCPeerConnection_removeTrack() | ERROR: pluginRTCPeerConnection with pcId=%@ does not exist", String(pcId))
@@ -352,7 +352,7 @@ class iosrtcPlugin : CDVPlugin {
         }
 
         if rtcRtpSender == nil {
-            NSLog("iosrtcPlugin#RTCPeerConnection_removeTrack() | ERROR: rtcRtpSender with id=%@ does not exist", String("\(pcID)_\(trackId)"))
+            NSLog("iosrtcPlugin#RTCPeerConnection_removeTrack() | ERROR: rtcRtpSender with id=%@ does not exist", String("\(pcId)_\(trackId)"))
             return;
         }
 
@@ -1064,13 +1064,13 @@ class iosrtcPlugin : CDVPlugin {
 
 
     fileprivate func saveRTCRtpSender(_ rtcRtpSender: RTCRtpSender, pcId: Int, trackId: String) {
-        if self.rtcRtpSenders["\(pcID)_\(trackId)"] == nil {
-            self.rtcRtpSenders["\(pcID)_\(trackId)"] = rtcRtpSender
+        if self.rtcRtpSenders["\(pcId)_\(trackId)"] == nil {
+            self.rtcRtpSenders["\(pcId)_\(trackId)"] = rtcRtpSender
         }
     }
 
 
     fileprivate func deleteRTCRtpSender(_ pcId: Int, trackId: String) {
-        self.rtcRtpSenders["\(pcID)_\(trackId)"] = nil
+        self.rtcRtpSenders["\(pcId)_\(trackId)"] = nil
     }
 }

@@ -22,6 +22,7 @@
 // #import "RTCOpenGLVideoRenderer.h"
 //#import "RTCPair.h"
 #import "RTCConfiguration.h"
+#import "RTCCertificate.h"
 #import "RTCPeerConnection.h"
 //#import "RTCPeerConnectionDelegate.h"
 #import "RTCPeerConnectionFactory.h"
