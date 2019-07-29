@@ -55,7 +55,7 @@
 		<header-file src="src/webrtc-headers/RTCFileLogger.h" />
 		<header-file src="src/webrtc-headers/RTCFileVideoCapturer.h" />
 		<header-file src="src/webrtc-headers/RTCH264ProfileLevelId.h" />
-		<header-file src="src/webrtc-headers/RTCI420Frame.h" />
+		<header-file src="src/webrtc-headers/RTCI420Buffer.h" />
 		<header-file src="src/webrtc-headers/RTCIceCandidate.h" />
 		<header-file src="src/webrtc-headers/RTCIceServer.h" />
 		<header-file src="src/webrtc-headers/RTCIntervalRange.h" />
