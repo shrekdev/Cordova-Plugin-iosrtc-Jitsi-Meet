@@ -30,7 +30,6 @@
 #import "RTCLegacyStatsReport.h"
 //#import "RTCStatsReport.h"
 //#import "RTCTypes.h"
-#import "RTCAVFoundationVideoSource.h"
 #import "RTCVideoCapturer.h"
 #import "RTCCameraVideoCapturer.h"
 #import "RTCVideoRenderer.h"
