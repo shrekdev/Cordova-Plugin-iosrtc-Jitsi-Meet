@@ -30,7 +30,6 @@
 		</js-module>
 
 		<!-- Bridging header for using ObjetiveC libraries in Swift -->
-		<header-file src="src/webrtc-headers/RTCAVFoundationVideoSource.h" />
 		<header-file src="src/webrtc-headers/RTCFieldTrials.h" />
 		<header-file src="src/webrtc-headers/RTCMediaStreamTrack.h" />
 		<header-file src="src/webrtc-headers/RTCSessionDescription.h" />
