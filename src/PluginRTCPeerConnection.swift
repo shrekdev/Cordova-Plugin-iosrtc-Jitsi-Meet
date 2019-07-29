@@ -42,7 +42,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		self.pluginRTCDTMFSenders = [:]
 	}
 
-		
+
 
 	func run() {
 		NSLog("PluginRTCPeerConnection#run()")
@@ -69,11 +69,11 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 
 			if(error != nil){
 				NSLog("PluginRTCPeerConnection#createOffer() | failure callback: %@", String(describing: error))
-				
+
 				errback(error!)
 				return
 			}
-			
+
 			NSLog("PluginRTCPeerConnection#createOffer() | success callback: %@ %@", self.rtcSdpTypeToString(type: des!.type), des!.sdp)
 
 			let data = [
@@ -98,9 +98,9 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		}
 
 		let pluginRTCPeerConnectionConstraints = PluginRTCPeerConnectionConstraints(pcConstraints: options)
-		
+
 		self.rtcPeerConnection.answer(for: pluginRTCPeerConnectionConstraints.getConstraints(), completionHandler: { (des: RTCSessionDescription?, error: Error?) in
-	
+
 			if(error != nil){
 				NSLog("PluginRTCPeerConnection#createOffer() | failure callback: %@", String(describing: error))
 
@@ -114,11 +114,11 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 				"type": self.rtcSdpTypeToString(type: des!.type),
 				"sdp": des!.sdp
 				] as [String : Any]
-			
+
 			callback(data as NSDictionary)
 		})
 	}
-	
+
 	func rtcSdpTypeToString(type: RTCSdpType) -> String {
 		if(type == RTCSdpType.offer){
 			return "offer";
@@ -130,7 +130,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 			return "answer";
 		}
 	}
-	
+
 	func rtcSdpTypeParser(type: String) -> RTCSdpType {
 		if(type == "answer"){
 			return RTCSdpType.answer;
@@ -258,7 +258,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		if self.rtcPeerConnection.signalingState.rawValue == RTCSignalingState.closed.rawValue {
 			return false
 		}
-		
+
 		self.rtcPeerConnection.add(pluginMediaStream.rtcMediaStream)
 		return true
 	}
@@ -272,6 +272,31 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		}
 
 		self.rtcPeerConnection.remove(pluginMediaStream.rtcMediaStream)
+	}
+
+
+	func addTrack(
+		_ pluginMediaStreamTrack: PluginMediaStreamTrack,
+		pluginMediaStream: PluginMediaStream
+	) -> RTCRtpSender {
+		NSLog("PluginRTCPeerConnection#addTrack()")
+
+		if self.rtcPeerConnection.signalingState.rawValue == RTCSignalingState.closed.rawValue {
+			return false
+		}
+
+		return self.rtcPeerConnection.addTrack(pluginMediaStreamTrack.pluginMediaStreamTrack, pluginMediaStream.pluginMediaStream.id)
+	}
+
+
+    func removeTrack(_ rtcRtpSender: RTCRtpSender) {
+		NSLog("PluginRTCPeerConnection#removeTrack()")
+
+		if self.rtcPeerConnection.signalingState.rawValue == RTCSignalingState.closed.rawValue {
+			return
+		}
+
+		self.rtcPeerConnection.removeTrack(rtcRtpSender)
 	}
 
 
@@ -381,7 +406,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		if self.rtcPeerConnection.signalingState.rawValue == RTCSignalingState.closed.rawValue {
 			return
 		}
-		
+
 		for streamId: String in streamIds {
 			self.eventListenerForRemoveStream(streamId)
 		}
@@ -476,7 +501,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 	/**
 	 * Methods inherited from RTCPeerConnectionDelegate.
 	 */
-	
+
 	/** Called when the SignalingState changed. */
 	func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
 		let state_str = PluginRTCTypes.signalingStates[stateChanged.rawValue] as String! ?? "default"
@@ -507,7 +532,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 			"stream": pluginMediaStream.getJSON()
 			])
 	}
-	 
+
 	/** Called when a remote peer closes a stream. */
 	func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
 		NSLog("PluginRTCPeerConnection | onremovestream")
@@ -529,7 +554,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 			"type": "negotiationneeded"
 			])
 	}
-	 
+
 	/** Called any time the IceConnectionState changes. */
 	func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
 		let state_str = PluginRTCTypes.iceConnectionStates[newState.rawValue] as String!
@@ -570,7 +595,7 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 			])
 		}
 	}
- 
+
 	/** New ice candidate has been found. */
 	func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
 		NSLog("PluginRTCPeerConnection | onicecandidate [sdpMid:%@, sdpMLineIndex:%@, candidate:%@]",
@@ -593,12 +618,12 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 			]
 		])
 	}
-	 
+
 	/** Called when a group of local Ice candidates have been removed. */
 	func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {
-	
+
 	}
-	 
+
 	/** New data channel has been opened. */
 	func peerConnection(_ peerConnection: RTCPeerConnection,
 						didOpen rtcDataChannel: RTCDataChannel) {
@@ -608,13 +633,13 @@ class PluginRTCPeerConnection : NSObject, RTCPeerConnectionDelegate {
 		let pluginRTCDataChannel = PluginRTCDataChannel(
 			rtcDataChannel: rtcDataChannel
 		)
-		
+
 		// Store the pluginRTCDataChannel into the dictionary.
 		self.pluginRTCDataChannels[dcId] = pluginRTCDataChannel
-		
+
 		// Run it.
 		pluginRTCDataChannel.run()
-		
+
 		// Fire the 'datachannel' event so the JS will create a new RTCDataChannel.
 		self.eventListener([
 			"type": "datachannel",

@@ -1421,6 +1421,8 @@ function RTCPeerConnection(pcConfig, pcConstraints) {
 	this.localStreams = {};
 	this.remoteStreams = {};
 
+	this.rtpSenders = {};
+
 	function onResultOK(data) {
 		onEvent.call(self, data);
 	}
@@ -1950,6 +1952,34 @@ RTCPeerConnection.prototype.removeStream = function (stream) {
 };
 
 
+RTCPeerConnection.prototype.addTrack = function (track, stream) {
+	if (isClosed.call(this)) {
+		throw new Errors.InvalidStateError('peerconnection is closed');
+	}
+
+	debug('addTrack()');
+
+	if (!(track instanceof MediaStreamTrack)) {
+		throw new Error('addTrack() must be called with a MediaStreamTrack instance as 1 argument');
+	}
+
+	if (!(stream instanceof MediaStream)) {
+		throw new Error('addTrack() must be called with a MediaStream instance as 2 argument');
+	}
+
+	if (this.rtpSenders[track.id]) {
+		debugerror('addTrack() | given track already in present in senders');
+		return;
+	}
+
+	function onResultOK(data) {
+		onEvent.call(self, data);
+	}
+
+	exec(onResultOK, null, 'iosrtcPlugin', 'RTCPeerConnection_addTrack', [this.pcId, track.id, stream.id]);
+};
+
+
 RTCPeerConnection.prototype.createDataChannel = function (label, options) {
 	if (isClosed.call(this)) {
 		throw new Errors.InvalidStateError('peerconnection is closed');
@@ -2171,6 +2201,10 @@ function onEvent(data) {
 
 			// Remove from the remote streams.
 			delete this.remoteStreams[stream.id];
+			break;
+
+		case 'addtrack':
+			console.log('addtrack');
 			break;
 
 		case 'datachannel':
