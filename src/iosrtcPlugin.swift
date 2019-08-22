@@ -34,7 +34,7 @@ class iosrtcPlugin : CDVPlugin {
 		pluginMediaStreams = [:]
 		pluginMediaStreamTracks = [:]
 		pluginMediaStreamRenderers = [:]
-		queue = DispatchQueue(label: "cordova-plugin-iosrtc", attributes: [])
+		queue = DispatchQueue(label: "cordova-plugin-iosrtc-extended", attributes: [])
 		pluginRTCPeerConnections = [:]
 
 		// Initialize DTLS stuff.
